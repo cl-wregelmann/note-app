@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreNote;
 use App\Models\Background;
 use App\Models\Note;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -13,10 +12,9 @@ class NoteController extends Controller
 {
      public function index()
      {
-          $user = User::first();
-          $notes = $user->notes()->where("delete", 0)->orderByDesc('updated_at')->get();
+          $notes = Note::where("delete", 0)->orderByDesc('updated_at')->get();
           $useMenu = true;
-          return view('notes.index', compact('user', 'notes', 'useMenu'));
+          return view('notes.index', compact('notes', 'useMenu'));
      }
 
      public function create()
@@ -27,13 +25,11 @@ class NoteController extends Controller
 
      public function store(StoreNote $request)
      {
-          $user = User::first();
           $note = Note::create([
                'title' => $request['note-title'],
                'slug' => Str::slug($request['note-title']),
                'body' => $request->body,
                'abstract' => $this->closetags(Str::of($request->body)->limit(200)),
-               'user_id' => $user->id
           ]);
 
           $note->background()->associate($request['background-color']);
@@ -44,11 +40,10 @@ class NoteController extends Controller
 
      public function show(Note $note)
      {
-          $user = User::first();
           $colors = Background::all();
           $edit = true;
           $title = $note->title . ' - Note App';
-          return view('notes.show', compact('user', 'note', 'colors', 'edit', 'title'));
+          return view('notes.show', compact('note', 'colors', 'edit', 'title'));
      }
 
      public function showLabelsEdit(Note $note)
@@ -68,11 +63,10 @@ class NoteController extends Controller
 
      public function showReadOnly(Note $note)
      {
-          $user = User::first();
           $colors = Background::all();
           $readOnly = true;
           $title = $note->title . ' - Note App';
-          return view('notes.show', compact('user', 'note', 'colors', 'readOnly', 'title'));
+          return view('notes.show', compact('note', 'colors', 'readOnly', 'title'));
      }
 
      public function update(StoreNote $request, Note $note)
@@ -100,28 +94,23 @@ class NoteController extends Controller
 
      public function trash()
      {
-          $user = User::first();
-          $notes = $user->notes()->where("delete", 1)->orderByDesc('updated_at')->get();
+          $notes = Note::where("delete", 1)->orderByDesc('updated_at')->get();
           $useMenu = true;
           $trash = true;
           $title = 'Trash - Note App';
-
-          return view('notes.index', compact('user', 'notes', 'useMenu', 'trash', 'title'));
+          return view('notes.index', compact('notes', 'useMenu', 'trash', 'title'));
      }
 
      public function emptyTrash(Request $request)
      {
-          $notes = User::first()->notes->where("delete", 1);
+          $notes = Note::where("delete", 1)->get();
           $nNotes = $notes->count();
 
-          if ($nNotes > 0)
-               foreach ($notes as $note)
-                    $note->delete();
-
           if ($nNotes == 0) {
-               $message = "There are no notes";
-               return redirect()->route('notes.trash')->withErrors($message);
+               return redirect()->route('notes.trash')->withErrors("There are no notes");
           }
+
+          $notes->each->delete();
 
           $message = $nNotes == 1 ? "Note deleted forever" : "Notes deleted forever";
           return redirect()->route('notes.trash')->with('info', $message);
@@ -136,24 +125,19 @@ class NoteController extends Controller
 
      public function search(Request $request)
      {
-          $search = $request->search;
-          return redirect()->route("notes.searchView", $search);
+          return redirect()->route("notes.searchView", $request->search);
      }
 
      public function searchView($search)
      {
-          $user = User::first();
-          $notes = Note::where([
-               ["user_id", $user->id],
-               ["delete", 0]
-          ])->where(function ($query) use ($search) {
-               $query
-                    ->where("title", 'LIKE', "%{$search}%")
-                    ->orWhere('body', 'LIKE', "%{$search}%");
-          })->get();
+          $notes = Note::where("delete", 0)
+               ->where(function ($query) use ($search) {
+                    $query->where("title", 'LIKE', "%{$search}%")
+                         ->orWhere('body', 'LIKE', "%{$search}%");
+               })->get();
 
           $useMenu = true;
-          return view('notes.index', compact('user', 'notes', 'useMenu', 'search'));
+          return view('notes.index', compact('notes', 'useMenu', 'search'));
      }
 
      public function closetags($html)

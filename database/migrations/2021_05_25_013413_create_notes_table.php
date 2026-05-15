@@ -21,19 +21,11 @@ class CreateNotesTable extends Migration
                $table->string('abstract');
                $table->boolean("delete")->default("0");
                $table->unsignedBigInteger("background_id")->nullable();
-               $table->unsignedBigInteger("user_id");
-
                $table->foreign("background_id")
                     ->references("id")
                     ->on("backgrounds")
                     ->onUpdate("cascade")
                     ->onDelete("set null");
-
-               $table->foreign("user_id")
-                    ->references("id")
-                    ->on("users")
-                    ->onUpdate("cascade")
-                    ->onDelete("cascade");
 
                $table->timestamps();
           });

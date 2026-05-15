@@ -27,7 +27,7 @@
                <div class="labels">
                     <h3 class="title">Labels</h3>
                     
-                    @foreach ($user->labels as $label)
+                    @foreach ($labels as $label)
                         <li @if( request()->routeIs("labels.show") && $currentLabel == $label) class="active" @endif>
                               <a href="{{ route("labels.show", $label) }}">
                                    <span class="material-icons-outlined icons">label</span>

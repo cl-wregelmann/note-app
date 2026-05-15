@@ -17,9 +17,6 @@ class CreateLabelsTable extends Migration
                $table->id();
 
                $table->string("name", 65);
-               $table->unsignedBigInteger("user_id");
-
-               $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade")->onUpdate("cascade");
 
                $table->timestamps();
           });

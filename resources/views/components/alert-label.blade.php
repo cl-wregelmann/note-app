@@ -18,7 +18,7 @@
                                    <input type="text" name="new_label" placeholder="Create new label..." class="create-input">
                               </div>
 
-                              @foreach ($user->labels as $label)
+                              @foreach ($labels as $label)
                                    <div class="input-container alert-label-container"> 
                                         <input type="text" name="id-labels[]" value="{{ $label->id }}" style="display:none;">{{-- id's labels order --}}
                                         <input type="checkbox" id="del-{{ $label->id }}" name="delete-labels[]" value="{{ $label->id }}" style="display:none;" class="delete-checkbox">  {{-- labels deleted id's --}}

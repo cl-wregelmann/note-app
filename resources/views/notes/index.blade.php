@@ -4,7 +4,7 @@
 
 @section('content')
 
-     @include('components/header', [$user, $notes])
+     @include('components/header')
 
      @isset($search)
           @if($notes->count() > 0)

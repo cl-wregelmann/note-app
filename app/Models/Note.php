@@ -21,12 +21,6 @@ class Note extends Model
           return $this->belongsTo(Background::class);
      }
 
-     // Many to many relationship
-     public function user()
-     {
-          return $this->belongsTo(User::class);
-     }
-
      public function labels()
      {
           return $this->belongsToMany(Label::class);

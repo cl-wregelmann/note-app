@@ -14,7 +14,7 @@
                                    <input type="text" name="new_label" placeholder="Create new label..." class="create-input">
                               </div>
 
-                              @foreach ($user->labels as $label)
+                              @foreach ($labels as $label)
                                    <div class="input-container alert-label-container">
                                         <label for="label-{{ $label->id }}">
                                              <span class="material-icons-outlined">&#xe892;</span>
@@ -52,7 +52,7 @@
                                    <input type="text" name="new_label" placeholder="Create new label..." class="create-input">
                               </div>
 
-                              @foreach ($user->labels as $label)
+                              @foreach ($labels as $label)
                                    <div class="input-container alert-label-container">
                                         <label for="label-{{ $label->id }}">
                                              <span class="material-icons-outlined">&#xe892;</span>

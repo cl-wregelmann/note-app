@@ -9,15 +9,8 @@ class Label extends Model
 {
      use HasFactory;
 
-     protected $fillable = ['name', 'user_id'];
+     protected $fillable = ['name'];
 
-     // One to many relationship (inverse)
-     public function user()
-     {
-          return $this->belongsTo(User::class);
-     }
-
-     // Many to many relationship
      public function notes()
      {
           return $this->belongsToMany(Note::class);
