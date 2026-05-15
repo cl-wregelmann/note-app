@@ -26,6 +26,6 @@ Some functionalities of the application are:
 4. Copy `.env.example` file to `.env` on the root folder. You can type `copy .env.example .env` if using command prompt Windows or `cp .env.example .env` if using terminal,
 5. Run `php artisan key:generate`.
 6. Run `php artisan storage:link`.
-7. Run `php artisan migrate`.
+7. Run `php artisan migrate --seed`.
 8. Run `php artisan serve`.
 9. Go to `http://localhost:8000/`.
