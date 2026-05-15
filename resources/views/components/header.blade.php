@@ -22,31 +22,6 @@
                     </button>
                </form>
           @endisset
-
-          <div class="right-component">
-               <div class="profile-image">
-                    <img src="@if($user->image) {{$user->image->path}} @else {{asset("/img/image-defaut.png")}} @endif" alt="Undisplayable image" srcset="" class="dropdown-user-img">
-               </div>
-          </div>
      </header>
 
-     {{-- Dropdown user --}}
-     <div class="dropdown">
-          <div class="user-data">
-               <a href="{{ route('user.profile')}}" class="user-image">
-                    <img src="@if($user->image) {{$user->image->path}} @else {{asset("/img/image-defaut.png")}} @endif" alt="Undisplayable image" srcset="">
-                    <button class="material-icons-outlined icon-camera">&#xe3c9;</button>
-               </a>
-               
-               <h2 class="username">{{$user->name}}</h2>
-               <span class="email">{{$user->email}}</span>
-          </div>
-
-          <div class="user-options">
-               <a href="{{ route('user.profile') }}"><span class="material-icons-round">&#xe853;</span> Profile</a>
-               <a href="{{ route('login.logout') }}"><span class="material-icons-outlined">&#xe9ba;</span> Log out</a>
-          </div>
-
-          <span class="material-icons-outlined close-bttn">&#xe5cd;</span>
-     </div>
 </div>

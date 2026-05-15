@@ -10,5 +10,7 @@ Set up this Laravel note-app for local development. Run each step in order and s
 4. Run `php artisan key:generate`.
 5. Run `php artisan storage:link` (skip if the symlink already exists).
 6. Run `php artisan migrate`. The app uses SQLite — no DB credentials needed.
-7. If `package.json` exists and `node_modules` is missing, run `npm install` and then `npm run dev` to build frontend assets.
-8. Tell the user setup is complete and that they can start the dev server with `php artisan serve` and visit `http://localhost:8000/`. Do not start the server yourself unless the user asks.
+7. Create a default dev user if one doesn't already exist. Run:
+   `php artisan tinker --execute="App\Models\User::firstOrCreate(['email' => 'dev@localhost'], ['name' => 'Dev', 'password' => bcrypt('password')]);"`
+8. If `package.json` exists and `node_modules` is missing, run `npm install` and then `npm run dev` to build frontend assets.
+9. Tell the user setup is complete and that they can start the dev server with `php artisan serve` and visit `http://localhost:8000/`. Mention that they can sign in with email `dev@localhost` and password `password`. Do not start the server yourself unless the user asks.

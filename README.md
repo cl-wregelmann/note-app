@@ -13,7 +13,6 @@ Some functionalities of the application are:
 
 -   Image storage.
 -   Use of different types of Eloquent relationships.
--   Authentication and user registration.
 
 ## Screenshot:
 
@@ -25,10 +24,8 @@ Some functionalities of the application are:
 2. Go to project folder `cd note-app/`
 3. Run `composer update` (the committed `composer.lock` pins older packages that don't support recent PHP versions, so prefer `composer update` over `composer install`)
 4. Copy `.env.example` file to `.env` on the root folder. You can type `copy .env.example .env` if using command prompt Windows or `cp .env.example .env` if using terminal,
-5. Open your `.env` file and change the database name `DB_DATABASE` to whatever you have, username `DB_USERNAME` and password `DB_PASSWORD` field correspond to your configuration.
-6. Run `php artisan key:generate`.
-7. Run `php artisan storage:link`.
-8. Run `php artisan migrate`.
-9. Run `php artisan serve`.
-10. Go to `http://localhost:8000/`.
-11. Register and get started (No email or spam will be sent to you)
+5. Run `php artisan key:generate`.
+6. Run `php artisan storage:link`.
+7. Run `php artisan migrate`.
+8. Run `php artisan serve`.
+9. Go to `http://localhost:8000/`.
