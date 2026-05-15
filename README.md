@@ -22,10 +22,11 @@ Some functionalities of the application are:
 
 1. Run `git clone https://github.com/josedanielchg/note-app`
 2. Go to project folder `cd note-app/`
-3. Run `composer update` (the committed `composer.lock` pins older packages that don't support recent PHP versions, so prefer `composer update` over `composer install`)
+3. Run `composer install`
 4. Copy `.env.example` file to `.env` on the root folder. You can type `copy .env.example .env` if using command prompt Windows or `cp .env.example .env` if using terminal,
-5. Run `php artisan key:generate`.
-6. Run `php artisan storage:link`.
-7. Run `php artisan migrate --seed`.
-8. Run `php artisan serve`.
-9. Go to `http://localhost:8000/`.
+5. Run `touch database/database.sqlite` to create the database file.
+6. Run `php artisan key:generate`.
+7. Run `php artisan storage:link`.
+8. Run `php artisan migrate --seed`.
+9. Run `php artisan serve`.
+10. Go to `http://localhost:8000/`.
