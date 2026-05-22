@@ -17,6 +17,33 @@ __webpack_require__(/*! ./components/colors-selector */ "./resources/js/componen
 
 __webpack_require__(/*! ./components/form-edit */ "./resources/js/components/form-edit.js");
 
+__webpack_require__(/*! ./components/char-count */ "./resources/js/components/char-count.js");
+
+/***/ }),
+
+/***/ "./resources/js/components/char-count.js":
+/*!***********************************************!*\
+  !*** ./resources/js/components/char-count.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _editor_config_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./editor_config.js */ "./resources/js/components/editor_config.js");
+
+var counter = document.createElement('span');
+counter.id = 'char-count';
+var editorContainer = document.querySelector('.editor-container');
+editorContainer.appendChild(counter);
+
+function updateCount() {
+  var length = _editor_config_js__WEBPACK_IMPORTED_MODULE_0__["default"].getText().trim().length;
+  counter.textContent = length + ' characters';
+}
+
+updateCount();
+_editor_config_js__WEBPACK_IMPORTED_MODULE_0__["default"].on('text-change', updateCount);
+
 /***/ }),
 
 /***/ "./resources/js/components/colors-selector.js":
