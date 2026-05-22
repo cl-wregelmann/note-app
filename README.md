@@ -22,8 +22,8 @@ Some functionalities of the application are:
 
 1. Run `git clone https://github.com/josedanielchg/note-app`
 2. Go to project folder `cd note-app/`
-3. Run `composer install`
-4. Copy `.env.example` file to `.env` on the root folder. You can type `copy .env.example .env` if using command prompt Windows or `cp .env.example .env` if using terminal,
+3. Copy `.env.example` file to `.env` on the root folder. You can type `copy .env.example .env` if using command prompt Windows or `cp .env.example .env` if using terminal,
+4. Run `composer install`
 5. Run `php artisan key:generate`.
 6. Run `php artisan storage:link`.
 7. Run `php artisan migrate --seed`.
